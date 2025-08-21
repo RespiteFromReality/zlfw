@@ -14,8 +14,6 @@ pub fn build(b: *std.Build) void {
     options.addOption(bool, "error_check", error_check);
 
     const glfw = b.dependency("glfw", .{
-        .target = target,
-        .optimize = optimize,
         .include_src = true,
     });
 
@@ -25,15 +23,16 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
+
     mod.linkLibrary(glfw.artifact("glfw"));
     mod.addOptions("glfw_options", options);
 
     // Tests
-    const tests = b.addTest(.{
+    const tests = b.addTest(.{ .root_module = b.createModule(.{
         .root_source_file = b.path("src/test.zig"),
         .target = target,
         .optimize = optimize,
-    });
+    }) });
     tests.root_module.addImport("zlfw", mod);
     tests.root_module.addOptions("build_options", options);
     tests.linkLibrary(glfw.artifact("glfw"));

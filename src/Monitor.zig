@@ -1,6 +1,7 @@
 //! Monitor type and related functions
 const std = @import("std");
 const internal = @import("internal.zig");
+const api = @import("module.zig").api;
 const c = internal.c;
 const _c = internal._c;
 const glfw = internal.glfw;
@@ -15,7 +16,7 @@ handle: *_c._GLFWmonitor = undefined,
 ///
 /// Generates a glfw.Monitor given a C pointer to a monitor
 pub fn init(glfw_handle: *c.GLFWmonitor) Monitor {
-    return .{ .handle = @alignCast(@ptrCast(glfw_handle)) };
+    return .{ .handle = @ptrCast(@alignCast(glfw_handle)) };
 }
 
 /// Returns the currently connected monitors.
@@ -64,7 +65,7 @@ pub fn setCallback(callback: ?fn (monitor: Monitor, event: Event) void) void {
     requireInit();
     if (callback) |call| {
         const CWrapper = struct {
-            pub fn monitorCallback(monitor: ?*c.GLFWmonitor, event: c_int) callconv(.C) void {
+            pub fn monitorCallback(monitor: ?*c.GLFWmonitor, event: c_int) callconv(.c) void {
                 @call(.always_inline, call, .{
                     Monitor{ .handle = @ptrCast(@alignCast(monitor.?)) },
                     @as(Event, @enumFromInt(event)),

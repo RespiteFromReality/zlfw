@@ -10,8 +10,8 @@
     },
     .dependencies = .{
         .glfw = .{
-            .url = "https://github.com/Batres3/glfw/archive/refs/heads/master.tar.gz",
-            .hash = "glfw-0.0.0-R5AeUm0HGgA_Rlrr9HR91ejkGd-K_JyCjkXz_U3b-jp9",
+            .url = "git+https://github.com/RespiteFromReality/glfw#ce30ba7fb5e68222d0fe5f1b986f788a2ccce6f9",
+            .hash = "glfw-0.0.0-R5AeUkYHGgDBKwdDVh4AGwdy6pI4-O-feuMKLAKV0FYw",
         },
     },
 }
