@@ -10,8 +10,8 @@
     },
     .dependencies = .{
         .glfw = .{
-            .url = "git+https://github.com/RespiteFromReality/glfw#6fc723b0d2be587b9a6ec880ac4927c1120100f4",
-            .hash = "glfw-0.0.0-R5AeUnMHGgDrtzYcwIjJEhnJgkGEnp41LD9Fye2x3sPF",
+            .url = "git+https://github.com/RespiteFromReality/glfw#f889bba133fb58f901880098105367a52256d978",
+            .hash = "glfw-0.0.0-R5AeUl0HGgDnE_0ih8cXUFB6E9VI7q44qPzU6PV8oi6I",
         },
     },
 }
